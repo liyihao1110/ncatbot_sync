@@ -1,14 +1,15 @@
-# ncatbot_sync
-
 <div align="center">
 
+# ncatbot_sync
+
 [![star](https://gitee.com/li-yihao0328/ncatbot_sync/badge/star.svg?theme=gray)](https://gitee.com/li-yihao0328/ncatbot_sync/stargazers)
-
-</div>
-
 ---
 
 [English Docs](README.en.md) | [许可证](LICENSE)
+
+</div>
+
+
 
 基于 OneBot v11 协议的轻量级QQ机器人框架
 
