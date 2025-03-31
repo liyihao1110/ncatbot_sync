@@ -1,37 +1,53 @@
 # ncatbot_sync
 
-#### 介绍
-ncatbot精简同步版，基于onebot11协议编写
+[English Docs](README.en.md) | [许可证](LICENSE)
 
-#### 软件架构
-软件架构说明
+基于 OneBot v11 协议的轻量级QQ机器人框架
 
+## 特性
+- 支持群聊/私聊消息处理
+- 事件驱动架构
+- 内置 WebSocket 客户端
+- OneBot v11 API 封装
+- 可配置的消息订阅机制
+- 带日志轮转和彩色输出的日志系统
 
-#### 安装教程
+## 安装
+```bash
+git clone https://gitee.com/li-yihao0328/ncatbot_sync.git
+cd ncatbot_sync
+pip install -r requirements.txt
+```
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+## 配置
+1. 在项目根目录创建 `config.yaml`:
+```yaml
+url: "ws://你的OneBot服务地址:端口"
+token: "你的访问令牌"
+```
 
-#### 使用说明
+## 使用示例
+```python
+from ncatbot_sync import BotClient, Intents
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+# 配置需要处理的消息类型
+intents = Intents(group_message=True)
+bot = BotClient(intents=intents)
 
-#### 参与贡献
+@bot.on_message(GroupMessage, group_id=123456)
+async def 消息处理器(message):
+    bot.onebot11.send_msg("你好世界！", group_id=message.group_id)
 
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
+bot.run()
+```
 
+## 已实现功能
+✅ 消息发送  
+✅ 群组管理  
+✅ 事件处理  
+✅ 文件操作  
+✅ 系统状态  
+✅ 好友请求处理
 
-#### 特技
-
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  Gitee 官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解 Gitee 上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是 Gitee 最有价值开源项目，是综合评定出的优秀开源项目
-5.  Gitee 官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  Gitee 封面人物是一档用来展示 Gitee 会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+## 许可证
+MIT 许可证

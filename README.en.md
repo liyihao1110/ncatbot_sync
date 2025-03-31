@@ -1,36 +1,52 @@
 # ncatbot_sync
 
-#### Description
-ncatbot精简同步版，基于onebot11协议编写
+[中文文档](README.md) | [License](LICENSE)
 
-#### Software Architecture
-Software architecture description
+A lightweight QQ bot framework based on OneBot v11 protocol
 
-#### Installation
+## Features
+- Support group/private message handling
+- Event-driven architecture
+- Built-in WebSocket client
+- API wrapper for OneBot v11
+- Configurable message intents
+- Logging with rotation and color output
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+## Installation
+```bash
+git clone https://gitee.com/li-yihao0328/ncatbot_sync.git
+cd ncatbot_sync
+pip install -r requirements.txt
+```
 
-#### Instructions
+## Configuration
+1. Create `config.yaml` in project root:
+```yaml
+url: "ws://your-onebot-server:port"
+token: "your-access-token"
+```
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+## Usage
+```python
+from ncatbot_sync import BotClient, Intents
 
-#### Contribution
+intents = Intents(group_message=True)
+bot = BotClient(intents=intents)
 
-1.  Fork the repository
-2.  Create Feat_xxx branch
-3.  Commit your code
-4.  Create Pull Request
+@bot.on_message(GroupMessage, group_id=123456)
+async def handler(message):
+    bot.onebot11.send_msg("Hello World!", group_id=message.group_id)
 
+bot.run()
+```
 
-#### Gitee Feature
+## API Support
+✅ Message sending  
+✅ Group management  
+✅ Event handling  
+✅ File operations  
+✅ System status  
+✅ Friend requests
 
-1.  You can use Readme\_XXX.md to support different languages, such as Readme\_en.md, Readme\_zh.md
-2.  Gitee blog [blog.gitee.com](https://blog.gitee.com)
-3.  Explore open source project [https://gitee.com/explore](https://gitee.com/explore)
-4.  The most valuable open source project [GVP](https://gitee.com/gvp)
-5.  The manual of Gitee [https://gitee.com/help](https://gitee.com/help)
-6.  The most popular members  [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+## License
+MIT License
