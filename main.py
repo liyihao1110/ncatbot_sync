@@ -4,9 +4,10 @@ from ncatbot_sync.logger import get_logger
 from ncatbot_sync.message import GroupMessage, PrivateMessage, NoticeMessage, RequestMessage
 
 log = get_logger()
+
 # 通过预设置的类型，设置需要监听的事件通道
-# intents = ncatbot_sync.Intents.none()
-# intents.group_message=True
+# intents = ncatbot_sync.Intents.public()
+# intents.notice_message=True
 
 # 通过kwargs，设置需要监听的事件通道
 intents = ncatbot_sync.Intents(group_message=True, 
@@ -26,17 +27,17 @@ def private_message_handler(message: PrivateMessage):
     
     if message.raw_message == "测试":
 
-        # demo1
+        # demo1: 私聊消息发送
         # bot.onebot11.send_private_msg(user_id=message.user_id, message="NcatBot 测试成功喵~")
         
-        # demo2
+        # demo2: 自定义消息发送
         diy_message = [
             bot.onebot11.face(id=1),
             bot.onebot11.text("NcatBot 测试成功喵~")
         ]
         # bot.onebot11.send_msg(diy_message, user_id=message.user_id)
 
-        # demo3
+        # demo3: 转发消息发送
         diy_message_1 = [{
             "type": "node",
             "data": {
@@ -47,10 +48,10 @@ def private_message_handler(message: PrivateMessage):
         }]
         # bot.napcat.send_forward_msg(diy_message_1, user_id=message.user_id)
 
-        # demo4
+        # demo4: 戳一戳
         # bot.napcat.friend_poke(user_id=message.user_id)
 
-        # demo5
+        # demo5: 设置在线状态
         # 1.设置基础状态：在线
         bot.napcat.set_online_status(ncatbot_sync.StatusType.ONLINE)
         # 2. 设置扩展状态：听歌中
@@ -60,6 +61,7 @@ def private_message_handler(message: PrivateMessage):
         # 4. 使用离散参数
         # bot.napcat.set_online_status(10, 1000, 50)
         
+        
 
 @bot.on_message(NoticeMessage)
 def notice_message_handler(message: NoticeMessage):
@@ -67,7 +69,14 @@ def notice_message_handler(message: NoticeMessage):
     if message.sub_type == "poke":
         bot.onebot11.send_private_msg(user_id=message.user_id, message="NcatBot 戳一戳成功喵~")
 
-# 运行方式1：自定义配置
-bot.run(url="ws://localhost:3001", token="0123456789")
-# 运行方式2：使用配置文件
-# bot.run()
+@bot.on_message(RequestMessage)
+def request_message_handler(message: RequestMessage):
+    log.info(message)
+    if message.sub_type == "friend":
+        bot.onebot11.send_private_msg(user_id=message.user_id, message="NcatBot 好友请求成功喵~")
+
+if __name__ == "__main__":
+    # 运行方式1：自定义配置
+    bot.run(url="ws://localhost:3001", token="0123456789")
+    # 运行方式2：使用配置文件
+    # bot.run()
