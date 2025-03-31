@@ -3,7 +3,7 @@ import time
 from .api import Onebot11API, NapcatAPI, GocqhttpAPI, LagrangeAPI, LLonebotAPI
 from .logger import get_logger
 
-log = get_logger()
+log = get_logger("client")
 
 class BotClient:
     def __init__(self, intents):
@@ -49,7 +49,7 @@ class BotClient:
         is_image = self.onebot11.can_send_image()
         status = self.onebot11.get_status()
         version_info = self.onebot11.get_version_info()
-        log.info("%s;%s;QQ状态：%s;客户端版本：%s", "可以发送语音" if is_record else "不可以发送语音", "可以发送图片" if is_image else "不可以发送图片", "在线" if status["online"]==True else "不在线", version_info['app_name']+" "+version_info['app_version'])
+        log.info("%s|%s|QQ%s|%s", "可以发送语音" if is_record else "不可以发送语音", "可以发送图片" if is_image else "不可以发送图片", "在线" if status["online"]==True else "不在线", version_info['app_name']+" "+version_info['app_version'])
         try:
             while True:
                 time.sleep(1)
