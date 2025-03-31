@@ -23,15 +23,42 @@ def group_message_handler(message: GroupMessage):
 @bot.on_message(PrivateMessage, user_id=2793415370)  # 函数接受一个必须参数和多个可选参数*kwargs
 def private_message_handler(message: PrivateMessage):
     log.info(message.raw_message)
-    log.info(message.user_id)
-    
-    # 遍历 message.message 列表
-    for msg in message.message:
-        log.info(f"Message Type: {msg.type}")
-        log.info(f"Message Data: {msg.data}")
     
     if message.raw_message == "测试":
-        bot.onebot11.send_private_msg(user_id=message.user_id, message="NcatBot 测试成功喵~")
+
+        # demo1
+        # bot.onebot11.send_private_msg(user_id=message.user_id, message="NcatBot 测试成功喵~")
+        
+        # demo2
+        diy_message = [
+            bot.onebot11.face(id=1),
+            bot.onebot11.text("NcatBot 测试成功喵~")
+        ]
+        # bot.onebot11.send_msg(diy_message, user_id=message.user_id)
+
+        # demo3
+        diy_message_1 = [{
+            "type": "node",
+            "data": {
+                "name": "消息节点",
+                "uin": "2793415370",
+                "content": "测试消息"
+            }
+        }]
+        # bot.napcat.send_forward_msg(diy_message_1, user_id=message.user_id)
+
+        # demo4
+        # bot.napcat.friend_poke(user_id=message.user_id)
+
+        # demo5
+        # 1.设置基础状态：在线
+        bot.napcat.set_online_status(ncatbot_sync.StatusType.ONLINE)
+        # 2. 设置扩展状态：听歌中
+        # bot.napcat.set_online_status(ncatbot_sync.StatusType.LISTENING)
+        # 3. 设置带电池状态
+        # bot.napcat.set_online_status(ncatbot_sync.StatusType.BATTERY, battery_status=75)
+        # 4. 使用离散参数
+        # bot.napcat.set_online_status(10, 1000, 50)
         
 
 @bot.on_message(NoticeMessage)
