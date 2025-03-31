@@ -3,7 +3,7 @@ from typing import Union, List, Dict, Optional
 from ncatbot_sync.status import Status
 from ncatbot_sync.logger import get_logger
 
-log = get_logger()
+log = get_logger("api")
 
 class Onebot11API:
     def __init__(self, client):
