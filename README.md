@@ -1,5 +1,13 @@
 # ncatbot_sync
 
+<div align="center">
+
+[![star](https://gitee.com/li-yihao0328/ncatbot_sync/badge/star.svg?theme=gray)](https://gitee.com/li-yihao0328/ncatbot_sync/stargazers)
+
+</div>
+
+---
+
 [English Docs](README.en.md) | [许可证](LICENSE)
 
 基于 OneBot v11 协议的轻量级QQ机器人框架
@@ -51,3 +59,7 @@ bot.run()
 
 ## 许可证
 MIT 许可证
+
+## 开发进度
+
+[![木子/ncatbot_sync](https://gitee.com/li-yihao0328/ncatbot_sync/widgets/widget_card.svg?colors=4183c4,ffffff,ffffff,e3e9ed,666666,9b9b9b)](https://gitee.com/li-yihao0328/ncatbot_sync)
