@@ -7,11 +7,13 @@
 
 [English Docs](README.en.md) | [许可证](LICENSE)
 
+基于 OneBot v11 协议的轻量级QQ机器人框架
+
 </div>
 
 
 
-基于 OneBot v11 协议的轻量级QQ机器人框架
+
 
 ## 特性
 - 支持群聊/私聊消息处理
