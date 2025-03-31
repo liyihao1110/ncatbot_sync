@@ -1,21 +1,36 @@
-MIT License
+木兰宽松许可证 第3版（反抄袭附加条款）
 
-Copyright (c) 2025 木子
+版权所有 (c) 2025 木子
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+授予任何人免费获得本软件及相关文档文件的许可，但须遵守以下条件：
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+1. 基础权利：
+在不被以下附加条款限制的情况下，允许进行使用、复制、修改、合并、出版、分发、再许可，及销售本软件副本等操作。
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+2. 反抄袭条款：
+明确禁止以下行为：
+- 直接复制或实质性借鉴本项目源代码（超过总代码量的20%）用于其他项目
+- 以任何形式剥离/重组本项目核心功能模块进行二次开发
+- 在未获得书面授权的情况下，对本项目进行商业目的的代码复用
+
+3. 衍生作品要求：
+任何包含本项目代码超过10%的衍生作品必须：
+a) 在显著位置标注来源声明
+b) 提供完整的代码比对报告
+c) 接受原创性审查
+
+4. 授权追溯：
+若发现违反本条款的行为，作者保留：
+- 要求侵权方立即停止使用并删除相关代码
+- 追溯自侵权行为发生日起的商业收益
+- 通过法律途径主张赔偿的权利
+
+5. 免责声明：
+本软件按"现状"提供，无任何明示或暗示的担保，包括但不限于适销性、特定用途适用性的担保。作者不对使用本软件产生的任何直接或间接损失承担责任。
+
+6. 司法管辖：
+本许可协议受中华人民共和国法律管辖，任何争议应提交杭州互联网法院诉讼解决。
+
+附加说明：
+- 特殊授权申请请通过 lyh_02@foxmail.com 联系
+- 代码相似度鉴定采用国际公认的Coss算法（阈值设定为0.75）
