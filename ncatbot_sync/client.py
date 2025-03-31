@@ -1,6 +1,6 @@
 import time
 
-from .api import Onebot11API
+from .api import Onebot11API, NapcatAPI, GocqhttpAPI, LagrangeAPI, LLonebotAPI
 from .logger import get_logger
 
 log = get_logger()
@@ -11,6 +11,10 @@ class BotClient:
         self.handlers = {}
         self.websocket_client = None
         self.onebot11 = None
+        self.napcat = None
+        self.gocqhttp = None
+        self.lagrange = None
+        self.llonebot = None
 
     def on_message(self, message_type, **conditions):
         def decorator(func):
@@ -30,6 +34,10 @@ class BotClient:
             token = token or config.token
 
         self.onebot11 = Onebot11API(self)
+        self.napcat = NapcatAPI(self)
+        self.gocqhttp = GocqhttpAPI(self)
+        self.lagrange = LagrangeAPI(self)
+        self.llonebot = LLonebotAPI(self)
         
         self.websocket_client = WebSocketClient(
             url=url,
@@ -41,7 +49,7 @@ class BotClient:
         is_image = self.onebot11.can_send_image()
         status = self.onebot11.get_status()
         version_info = self.onebot11.get_version_info()
-        log.info("连接检查：%s;%s;机器人QQ状态：%s;客户端版本信息：%s", "可以发送语音" if is_record else "不可以发送语音", "可以发送图片" if is_image else "不可以发送图片", "在线" if status["online"]==True else "不在线", version_info['app_name']+version_info['app_version'])
+        log.info("%s;%s;QQ状态：%s;客户端版本：%s", "可以发送语音" if is_record else "不可以发送语音", "可以发送图片" if is_image else "不可以发送图片", "在线" if status["online"]==True else "不在线", version_info['app_name']+" "+version_info['app_version'])
         try:
             while True:
                 time.sleep(1)
