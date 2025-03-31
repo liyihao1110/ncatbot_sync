@@ -5,7 +5,7 @@ import json
 from ncatbot_sync.logger import get_logger
 
 
-log = get_logger()
+log = get_logger("connect")
 
 class WebSocketClient:
     def __init__(self, url, token, on_message):
