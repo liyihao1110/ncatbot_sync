@@ -13,15 +13,14 @@ classifiers = [
     "Programming Language :: Python :: 3",
     "Operating System :: OS Independent",
 ]
+
+[options]
+packages = ["ncatbot_sync"]
 install_requires = [
     "websocket-client >= 1.8.0",
     "PyYAML >= 6.0.2",
     "colorama >= 0.4.6"
 ]
-
-[options]
-packages = ["ncatbot_sync"]
-
 
 [options.package_data]
 "*" = ["*.txt", "*.md"]
