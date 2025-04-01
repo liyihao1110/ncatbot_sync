@@ -4,8 +4,8 @@ import time
 import json
 from ncatbot_sync.logger import get_logger
 
-
 log = get_logger("connect")
+
 
 class WebSocketClient:
     def __init__(self, url, token, on_message):
@@ -20,7 +20,7 @@ class WebSocketClient:
         self.last_heartbeat_time = None
         self.heartbeat_interval = None
         self.is_quit = False
-        self.retcode = (None,None)
+        self.retcode = (None, None)
 
     def connect(self):
         """ 建立WebSocket连接 """
@@ -32,7 +32,11 @@ class WebSocketClient:
             on_error=self._on_error,
             on_close=self._on_close
         )
-        
+        # 检查是否拒绝连接
+        if self.recive_ws.sock is None:
+            log.error("检查远端服务端是否正常工作")
+            exit(1)
+
         self.thread = threading.Thread(target=self.recive_ws.run_forever)
         self.thread.daemon = True
         self.thread.start()
@@ -49,7 +53,7 @@ class WebSocketClient:
             log.error(f"JSON 错误: {message}")
             return
         if data.get('status', None) == 'failed':
-            self.retcode = (data.get('code', None),data.get('message', None))
+            self.retcode = (data.get('code', None), data.get('message', None))
             self.is_quit = True
         # 处理元事件
         if data.get('post_type') == 'meta_event':
@@ -84,13 +88,12 @@ class WebSocketClient:
         self.last_heartbeat_time = None
         self.heartbeat_interval = None
 
-
     def _send(self, data: dict) -> dict:
         """ 发送API请求 """
         if self.send_ws is None:
             self.send_ws = websocket.WebSocket()
             self.send_ws.connect(self.send_url, header=self.headers)
-        
+
         try:
             # 发送JSON序列化后的数据
             self.send_ws.send(data)
