@@ -46,7 +46,12 @@ jobs:
       # ---------------------- 安装构建工具 ----------------------
       - name: Install build tools
         run: |
-          python -m pip install --upgrade pip setuptools wheel
+          python -m pip install --upgrade pip -r requirements.txt
+          python -m pip install build
+          python -m pip install twine
+          python -m pip install wheel
+          python -m pip install setuptools
+          
 
       # ---------------------- 动态生成 setup.py ----------------------
       - name: Generate dynamic setup.py
