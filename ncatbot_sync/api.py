@@ -29,6 +29,9 @@ class Onebot11API:
         
         if response.get("status") == "ok":
             return response.get("data") if expect_data else True
+        if response.get('message') == "token验证失败":
+            log.error("token验证失败，请检查token是否正确")
+            exit(1)
         else:
             log.warning(f"API调用失败: {action}, 错误信息: {response}")
             return None
