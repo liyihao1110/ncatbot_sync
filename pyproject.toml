@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "ncatbot_sync"
-version = "0.1.1"  # 此处会被动态覆盖，仅作占位符
+version = "0.1.2"  # 此处会被动态覆盖，仅作占位符
 description = "ncatbot精简同步版，基于onebot11协议编写"
 authors = [{ name = "木子", email = "lyh_02@qq.com" }]
 readme = "README.md"
@@ -13,14 +13,15 @@ classifiers = [
     "Programming Language :: Python :: 3",
     "Operating System :: OS Independent",
 ]
-
-[options]
-packages = ["ncatbot_sync"]
 install_requires = [
     "websocket-client >= 1.8.0",
     "PyYAML >= 6.0.2",
     "colorama >= 0.4.6"
 ]
+
+[options]
+packages = ["ncatbot_sync"]
+
 
 [options.package_data]
 "*" = ["*.txt", "*.md"]
