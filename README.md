@@ -7,6 +7,7 @@
 [![Python 3.8+](https://img.shields.io/badge/python-3.8%2B-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![OneBot v11](https://img.shields.io/badge/OneBot-v11-black.svg)](https://github.com/botuniverse/onebot)
+[![PyPI](https://img.shields.io/pypi/v/ncatbot-sync.svg)](https://pypi.org/project/ncatbot-sync/)
 [![访问量统计](https://visitor-badge.laobi.icu/badge?page_id=li-yihao0328.ncatbot_sync)](https://gitee.com/li-yihao0328/ncatbot_sync)
 
 基于OneBot v11协议的轻量级QQ机器人框架
