@@ -7,76 +7,33 @@ on:
     tags:
       - "v*"
 
+permissions:
+  contents: read
+
 jobs:
-  publish:
+  build-and-publish:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
 
     steps:
-      # -------------------------- 检出代码 --------------------------
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-      # ---------------------- 动态提取 __version__ ----------------------
-      - name: Extract package version
-        id: get-version
-        run: |
-          # 从 __init__.py 提取版本号（兼容单引号和双引号）
-          VERSION=$(grep -E "__version__\s*=\s*['\"](.*)['\"]" ncatbot_sync/__init__.py | cut -d"'" -f2 | cut -d'"' -f2)
-          echo "version=${VERSION}" >> $GITHUB_OUTPUT
-
-      # ---------------------- 验证版本号格式 ----------------------
-      - name: Validate version format
-        run: |
-          # 检查是否符合 PEP 440 规范
-          if [[ ! "${{ steps.get-version.outputs.version }}" =~ ^[0-9]+\.[0-9]+\.[0-9]+([a-zA-Z0-9]+(\.[0-9]+)?)?$ ]]; then
-            echo "::error::Invalid version format: ${{ steps.get-version.outputs.version }}"
-            exit 1
-          fi
-
-      # ---------------------- 设置 Python 环境 ----------------------
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v2
         with:
-          python-version: "3.11"
+          python-version: '3.x'  # 可以根据需要修改为具体的 Python 版本
 
-      # ---------------------- 安装构建工具 ----------------------
-      - name: Install build tools
+      - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install setuptools wheel twine  # 安装打包和发布工具
-          
 
-      # ---------------------- 动态生成 setup.py ----------------------
-      - name: Generate dynamic setup.py
-        run: |
-          cat > setup.py << EOF
-          from setuptools import setup, find_packages
-
-          with open("ncatbot_sync/__init__.py", "r") as f:
-              version_line = [line for line in f if line.startswith("__version__")][0]
-              version = eval(version_line.split("=")[-1])
-
-          setup(
-              name="ncatbot_sync",
-              version=version,
-              packages=find_packages(),
-              # 其他参数从 pyproject.toml 读取
-          )
-          EOF
-
-      # ---------------------- 构建分发包 ----------------------
-      - name: Build package
+      - name: Build the package
         run: |
           python setup.py sdist bdist_wheel  # 创建包
 
-      # ---------------------- 发布到 PyPI ----------------------
-      - name: Publish to PyPI
-        uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          user: __token__
-          password: ${{ secrets.PYPI_API_TOKEN }}
-          packages-dir: dist/
+      - name: Upload the package to PyPI
+        env:
+          PYPI_TOKEN: ${{ secrets.PYPI_API_TOKEN }}
+        run: |
+          twine upload dist/* -u __token__ -p $PYPI_TOKEN  # 使用 Twine 发布包
