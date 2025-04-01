@@ -96,6 +96,13 @@ def hourly_task():
     """每小时执行的定时任务"""
     bot.onebot11.send_group_msg("整点报时！", group_id=123456)
 ```
+
+## 😃 开发进度
+
+ - [ ] 插件系统搭建
+ - [ ] 插件市场
+ - [ ] markdown实现发送
+
 ## 🤝 参与贡献
 欢迎通过 Issue 或 Pull Request 参与项目开发！
 请先阅读 [贡献指南](CONTRIBUTING.md)
@@ -105,7 +112,8 @@ def hourly_task():
 <div align="center">
 
 ## 贡献者
-<!-- readme: collaborators,contributors -start -->
-<!-- readme: collaborators,contributors -end -->
+<a href="https://github.com/eryajf/learn-github/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=liyihao1110/ncatbot_sync" />
+</a>
 
 </div>
