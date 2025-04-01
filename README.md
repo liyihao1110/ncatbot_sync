@@ -145,6 +145,8 @@ file = bot.onebot11.get_file(file_id="file_id")
 ## 🤝 参与贡献
 欢迎通过 Issue 或 Pull Request 参与项目开发！请先阅读 [贡献指南](CONTRIBUTING.md)。
 
+<div align="center">
+
 ### 贡献者
 <a href="https://github.com/eryajf/learn-github/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=liyihao1110/ncatbot_sync" />
@@ -152,8 +154,8 @@ file = bot.onebot11.get_file(file_id="file_id")
 
 ---
 
-<div align="center">
+
 
 如果你在使用过程中遇到任何问题，欢迎在 [GitHub Issues](https://github.com/liyihao1110/ncatbot_sync/issues) 中反馈。感谢你的支持！
-![image](https://uapis.cn/api/imgapi/acg/pc.php)
+
 </div>
