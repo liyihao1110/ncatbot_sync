@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "ncatbot_sync"
-version = "0.0.0"  # 此处会被动态覆盖，仅作占位符
+version = "0.1.1"  # 此处会被动态覆盖，仅作占位符
 description = "ncatbot精简同步版，基于onebot11协议编写"
 authors = [{ name = "木子", email = "lyh_02@qq.com" }]
 readme = "README.md"
