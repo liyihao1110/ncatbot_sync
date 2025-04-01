@@ -7,10 +7,11 @@
 [![Python 3.8+](https://img.shields.io/badge/python-3.8%2B-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![OneBot v11](https://img.shields.io/badge/OneBot-v11-black.svg)](https://github.com/botuniverse/onebot)
+[![访问量统计](https://visitor-badge.laobi.icu/badge?page_id=li-yihao0328.ncatbot_sync)](https://gitee.com/li-yihao0328/ncatbot_sync)
 
 基于OneBot v11协议的轻量级QQ机器人框架
 
-[English Docs](README.en.md) | [文档](docs/) | [许可证](LICENSE)
+[文档](docs/) | [许可证](LICENSE)
 
 </div>
 
@@ -23,13 +24,13 @@
 - **丰富功能**：支持消息发送、群组管理、文件操作等
 - **专业日志**：带轮转机制的彩色日志系统
 ## 🛠️ 安装指南
-### 使用pip安装(计划实现，暂未实现)
+### 使用pip安装
 ```bash
 pip install ncatbot-sync
 ```
 ### 从源码安装
 ```bash
-git clone https://gitee.com/li-yihao0328/ncatbot_sync.git
+git clone https://github.com/liyihao1110/ncatbot_sync.git
 cd ncatbot_sync
 pip install -r requirements.txt
 ```
@@ -102,8 +103,8 @@ def hourly_task():
 
 <div align="center">
 
-[![访问量统计](https://visitor-badge.laobi.icu/badge?page_id=li-yihao0328.ncatbot_sync)](https://gitee.com/li-yihao0328/ncatbot_sync)
-
-[![木子/ncatbot_sync](https://gitee.com/li-yihao0328/ncatbot_sync/widgets/widget_card.svg?colors=4183c4,ffffff,ffffff,e3e9ed,666666,9b9b9b)](https://gitee.com/li-yihao0328/ncatbot_sync)
+## 贡献者
+<!-- readme: collaborators,contributors -start -->
+<!-- readme: collaborators,contributors -end -->
 
 </div>
