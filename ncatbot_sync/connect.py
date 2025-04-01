@@ -22,8 +22,50 @@ class WebSocketClient:
         self.is_quit = False
         self.retcode = (None, None)
 
+    @classmethod
+    def test_connection(cls, url, token=None, timeout=3):
+        """
+        静态方法测试连接可用性
+        :param url: 要测试的完整URL（包含/event或/api）
+        :param token: 认证令牌（可选）
+        :param timeout: 测试超时时间（秒）
+        :return: (是否成功, 错误信息)
+        """
+        test_ws = None
+        try:
+            headers = {"Authorization": f"Bearer {token}"} if token else None
+            # 创建临时测试连接
+            test_ws = websocket.create_connection(
+                url,
+                header=headers,
+                timeout=timeout
+            )
+            # 验证握手状态
+            if test_ws.getstatus() != 101:
+                return False, f"无效的握手状态码: {test_ws.getstatus()}"
+
+            # 主动关闭测试连接
+            test_ws.close()
+            return True, "连接成功"
+        except websocket.WebSocketTimeoutException:
+            return False, "连接超时"
+        except websocket.WebSocketBadStatusException as e:
+            return False, f"握手失败: {str(e)}"
+        except Exception as e:
+            return False, f"连接失败: {str(e)}"
+        finally:
+            if test_ws:
+                test_ws.close()
+
     def connect(self):
-        """ 建立WebSocket连接 """
+        """ 建立WebSocket连接前先执行测试 """
+        # 测试接收端连接
+        success, msg = self.test_connection(self.recive_url, self.token)
+        if not success:
+            log.error(msg)
+            exit(1)
+
+        # 测试通过后建立正式连接
         self.recive_ws = websocket.WebSocketApp(
             self.recive_url,
             header=self.headers,
@@ -32,10 +74,6 @@ class WebSocketClient:
             on_error=self._on_error,
             on_close=self._on_close
         )
-        # 检查是否拒绝连接
-        if self.recive_ws.sock is None:
-            log.error("检查远端服务端是否正常工作")
-            exit(1)
 
         self.thread = threading.Thread(target=self.recive_ws.run_forever)
         self.thread.daemon = True
@@ -79,6 +117,9 @@ class WebSocketClient:
     def _on_error(self, ws, error):
         """ 错误处理 """
         log.error(f"服务错误: {error}")
+        if "10054" in str(error):
+            log.warning("远程主机强迫关闭了一个现有的连接")
+            self.is_quit = True
 
     def _on_close(self, ws, status, reason):
         """ 连接关闭处理 """
