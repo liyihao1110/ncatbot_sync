@@ -7,7 +7,7 @@
 ## 🌱 开发流程
 ### 分支管理
 ```bash
-git clone https://gitee.com/li-yihao0328/ncatbot_sync.git
+git clone https://github.com/liyihao1110/ncatbot_sync
 git checkout -b feat/Function-development  # 功能开发分支
 # 或
 git checkout -b fix/issue-fix         # 问题修复分支
