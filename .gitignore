@@ -1,3 +1,11 @@
+# 在项目根目录创建 .gitignore
+echo "dist/
+build/
+*.egg-info/
+__pycache__/
+*.pyc" >> .gitignore
+
+
 # 通用忽略规则
 *.pyc
 *.pyo
