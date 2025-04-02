@@ -1,4 +1,4 @@
-# 创建 pyproject.toml (setuptools 需要)
-echo "[build-system]
-requires = [\"setuptools>=61.0\"]
-build-backend = \"setuptools.build_application\"" > pyproject.toml
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_application"
+
