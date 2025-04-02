@@ -43,6 +43,15 @@ jobs:
           exit 1
         fi
 
+    - name: Clean previous builds
+      run: |
+        rm -rf dist/*
+        rm -rf build/*
+    
+    - name: Update package version
+      run: |
+        sed -i "s/^__version__ = .*/__version__ = \"${{ env.VERSION }}\"/" src/ncatbot_sync/__init__.py
+
 
     - name: Build Package
       run: python -m build --sdist --wheel --outdir dist/
